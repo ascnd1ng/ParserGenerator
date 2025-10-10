@@ -1,0 +1,10 @@
+non-terminal E1, E2, T1, T2, F1;
+terminal '+', '*', '(', ')', n;
+
+E1  -> T1 E2;
+E2 -> '+' T1 E2 | eps;
+T1  -> F1 T2;
+T2 -> '*' F1 T2 | eps;
+F1  -> n | '(' E1 ')';
+
+axiom E1;

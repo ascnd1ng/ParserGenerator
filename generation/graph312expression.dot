@@ -1,0 +1,101 @@
+digraph {
+1 [label = "E1"]
+1 -> 3
+1 -> 4
+3 [label = "T1"]
+3 -> 5
+3 -> 6
+5 [label = "F1"]
+5 -> 7
+7 [label = "n\nattr: 10\npos: (1, 1)"]
+6 [label = "T2"]
+6 -> 8
+6 -> 9
+6 -> 10
+8 [label = "*\nattr: *\npos: (1, 4)"]
+9 [label = "F1"]
+9 -> 11
+9 -> 12
+9 -> 13
+11 [label = "(\nattr: (\npos: (1, 6)"]
+12 [label = "E1"]
+12 -> 14
+12 -> 15
+14 [label = "T1"]
+14 -> 16
+14 -> 17
+16 [label = "F1"]
+16 -> 18
+18 [label = "n\nattr: 2\npos: (1, 7)"]
+17 [label = "T2"]
+15 [label = "E2"]
+15 -> 19
+15 -> 20
+15 -> 21
+19 [label = "+\nattr: +\npos: (1, 9)"]
+20 [label = "T1"]
+20 -> 22
+20 -> 23
+22 [label = "F1"]
+22 -> 24
+24 [label = "n\nattr: 5\npos: (1, 11)"]
+23 [label = "T2"]
+23 -> 25
+23 -> 26
+23 -> 27
+25 [label = "*\nattr: *\npos: (1, 13)"]
+26 [label = "F1"]
+26 -> 28
+26 -> 29
+26 -> 30
+28 [label = "(\nattr: (\npos: (1, 15)"]
+29 [label = "E1"]
+29 -> 31
+29 -> 32
+31 [label = "T1"]
+31 -> 33
+31 -> 34
+33 [label = "F1"]
+33 -> 35
+35 [label = "n\nattr: 3\npos: (1, 16)"]
+34 [label = "T2"]
+32 [label = "E2"]
+32 -> 36
+32 -> 37
+32 -> 38
+36 [label = "+\nattr: +\npos: (1, 18)"]
+37 [label = "T1"]
+37 -> 39
+37 -> 40
+39 [label = "F1"]
+39 -> 41
+41 [label = "n\nattr: 7\npos: (1, 20)"]
+40 [label = "T2"]
+40 -> 42
+40 -> 43
+40 -> 44
+42 [label = "*\nattr: *\npos: (1, 22)"]
+43 [label = "F1"]
+43 -> 45
+45 [label = "n\nattr: 3\npos: (1, 24)"]
+44 [label = "T2"]
+38 [label = "E2"]
+30 [label = ")\nattr: )\npos: (1, 25)"]
+27 [label = "T2"]
+21 [label = "E2"]
+21 -> 46
+21 -> 47
+21 -> 48
+46 [label = "+\nattr: +\npos: (1, 27)"]
+47 [label = "T1"]
+47 -> 49
+47 -> 50
+49 [label = "F1"]
+49 -> 51
+51 [label = "n\nattr: 10\npos: (1, 29)"]
+50 [label = "T2"]
+48 [label = "E2"]
+13 [label = ")\nattr: )\npos: (1, 31)"]
+10 [label = "T2"]
+4 [label = "E2"]
+}

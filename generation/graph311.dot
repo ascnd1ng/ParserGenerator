@@ -1,0 +1,575 @@
+digraph {
+1 [label = "Program"]
+1 -> 3
+1 -> 4
+1 -> 5
+1 -> 6
+3 [label = "NT_Decl"]
+3 -> 7
+3 -> 8
+3 -> 9
+3 -> 10
+7 [label = "KW_NT\nattr: non-terminal\npos: (1, 1)"]
+8 [label = "ident\nattr: Program\npos: (1, 14)"]
+9 [label = "NT_Add"]
+9 -> 11
+9 -> 12
+9 -> 13
+11 [label = ",\nattr: ,\npos: (1, 21)"]
+12 [label = "ident\nattr: NT_Decl\npos: (1, 23)"]
+13 [label = "NT_Add"]
+13 -> 14
+13 -> 15
+13 -> 16
+14 [label = ",\nattr: ,\npos: (1, 30)"]
+15 [label = "ident\nattr: NT_Add\npos: (1, 32)"]
+16 [label = "NT_Add"]
+16 -> 17
+16 -> 18
+16 -> 19
+17 [label = ",\nattr: ,\npos: (1, 38)"]
+18 [label = "ident\nattr: T_Decl\npos: (1, 40)"]
+19 [label = "NT_Add"]
+19 -> 20
+19 -> 21
+19 -> 22
+20 [label = ",\nattr: ,\npos: (1, 46)"]
+21 [label = "ident\nattr: T_Add\npos: (1, 48)"]
+22 [label = "NT_Add"]
+22 -> 23
+22 -> 24
+22 -> 25
+23 [label = ",\nattr: ,\npos: (1, 53)"]
+24 [label = "ident\nattr: A_Decl\npos: (1, 55)"]
+25 [label = "NT_Add"]
+25 -> 26
+25 -> 27
+25 -> 28
+26 [label = ",\nattr: ,\npos: (1, 61)"]
+27 [label = "ident\nattr: RuleList\npos: (1, 63)"]
+28 [label = "NT_Add"]
+28 -> 29
+28 -> 30
+28 -> 31
+29 [label = ",\nattr: ,\npos: (1, 71)"]
+30 [label = "ident\nattr: Rule\npos: (1, 73)"]
+31 [label = "NT_Add"]
+31 -> 32
+31 -> 33
+31 -> 34
+32 [label = ",\nattr: ,\npos: (1, 77)"]
+33 [label = "ident\nattr: RuleResult\npos: (1, 79)"]
+34 [label = "NT_Add"]
+34 -> 35
+34 -> 36
+34 -> 37
+35 [label = ",\nattr: ,\npos: (1, 89)"]
+36 [label = "ident\nattr: RuleResultTail\npos: (1, 91)"]
+37 [label = "NT_Add"]
+37 -> 38
+37 -> 39
+37 -> 40
+38 [label = ",\nattr: ,\npos: (1, 105)"]
+39 [label = "ident\nattr: Chain\npos: (1, 107)"]
+40 [label = "NT_Add"]
+10 [label = ";\nattr: ;\npos: (1, 112)"]
+4 [label = "T_Decl"]
+4 -> 41
+4 -> 42
+4 -> 43
+4 -> 44
+41 [label = "KW_T\nattr: terminal\npos: (2, 1)"]
+42 [label = "term\nattr: '->'\npos: (2, 10)"]
+43 [label = "T_Add"]
+43 -> 45
+43 -> 46
+43 -> 47
+45 [label = ",\nattr: ,\npos: (2, 14)"]
+46 [label = "term\nattr: ';'\npos: (2, 16)"]
+47 [label = "T_Add"]
+47 -> 48
+47 -> 49
+47 -> 50
+48 [label = ",\nattr: ,\npos: (2, 19)"]
+49 [label = "term\nattr: '|'\npos: (2, 21)"]
+50 [label = "T_Add"]
+50 -> 51
+50 -> 52
+50 -> 53
+51 [label = ",\nattr: ,\npos: (2, 24)"]
+52 [label = "term\nattr: ','\npos: (2, 26)"]
+53 [label = "T_Add"]
+53 -> 54
+53 -> 55
+53 -> 56
+54 [label = ",\nattr: ,\npos: (2, 29)"]
+55 [label = "term\nattr: 'non-terminal'\npos: (2, 31)"]
+56 [label = "T_Add"]
+56 -> 57
+56 -> 58
+56 -> 59
+57 [label = ",\nattr: ,\npos: (2, 45)"]
+58 [label = "term\nattr: 'terminal'\npos: (2, 47)"]
+59 [label = "T_Add"]
+59 -> 60
+59 -> 61
+59 -> 62
+60 [label = ",\nattr: ,\npos: (2, 57)"]
+61 [label = "term\nattr: 'axiom'\npos: (2, 59)"]
+62 [label = "T_Add"]
+62 -> 63
+62 -> 64
+62 -> 65
+63 [label = ",\nattr: ,\npos: (2, 66)"]
+64 [label = "term\nattr: ident\npos: (2, 68)"]
+65 [label = "T_Add"]
+65 -> 66
+65 -> 67
+65 -> 68
+66 [label = ",\nattr: ,\npos: (2, 73)"]
+67 [label = "term\nattr: term\npos: (2, 75)"]
+68 [label = "T_Add"]
+68 -> 69
+68 -> 70
+68 -> 71
+69 [label = ",\nattr: ,\npos: (2, 79)"]
+70 [label = "term\nattr: kwepsilon\npos: (2, 81)"]
+71 [label = "T_Add"]
+44 [label = ";\nattr: ;\npos: (2, 90)"]
+5 [label = "RuleList"]
+5 -> 72
+5 -> 73
+72 [label = "Rule"]
+72 -> 74
+72 -> 75
+72 -> 76
+72 -> 77
+74 [label = "ident\nattr: Program\npos: (4, 1)"]
+75 [label = "->\nattr: ->\npos: (4, 9)"]
+76 [label = "RuleResult"]
+76 -> 78
+76 -> 79
+78 [label = "Chain"]
+78 -> 80
+78 -> 81
+80 [label = "ident\nattr: NT_Decl\npos: (4, 12)"]
+81 [label = "Chain"]
+81 -> 82
+81 -> 83
+82 [label = "ident\nattr: T_Decl\npos: (4, 20)"]
+83 [label = "Chain"]
+83 -> 84
+83 -> 85
+84 [label = "ident\nattr: RuleList\npos: (4, 27)"]
+85 [label = "Chain"]
+85 -> 86
+85 -> 87
+86 [label = "ident\nattr: A_Decl\npos: (4, 36)"]
+87 [label = "Chain"]
+79 [label = "RuleResultTail"]
+77 [label = ";\nattr: ;\npos: (4, 42)"]
+73 [label = "RuleList"]
+73 -> 88
+73 -> 89
+88 [label = "Rule"]
+88 -> 90
+88 -> 91
+88 -> 92
+88 -> 93
+90 [label = "ident\nattr: NT_Decl\npos: (5, 1)"]
+91 [label = "->\nattr: ->\npos: (5, 9)"]
+92 [label = "RuleResult"]
+92 -> 94
+92 -> 95
+94 [label = "Chain"]
+94 -> 96
+94 -> 97
+96 [label = "term\nattr: 'non-terminal'\npos: (5, 12)"]
+97 [label = "Chain"]
+97 -> 98
+97 -> 99
+98 [label = "term\nattr: ident\npos: (5, 27)"]
+99 [label = "Chain"]
+99 -> 100
+99 -> 101
+100 [label = "ident\nattr: NT_Add\npos: (5, 33)"]
+101 [label = "Chain"]
+101 -> 102
+101 -> 103
+102 [label = "term\nattr: ';'\npos: (5, 40)"]
+103 [label = "Chain"]
+95 [label = "RuleResultTail"]
+93 [label = ";\nattr: ;\npos: (5, 43)"]
+89 [label = "RuleList"]
+89 -> 104
+89 -> 105
+104 [label = "Rule"]
+104 -> 106
+104 -> 107
+104 -> 108
+104 -> 109
+106 [label = "ident\nattr: NT_Add\npos: (6, 1)"]
+107 [label = "->\nattr: ->\npos: (6, 8)"]
+108 [label = "RuleResult"]
+108 -> 110
+108 -> 111
+110 [label = "Chain"]
+110 -> 112
+110 -> 113
+112 [label = "term\nattr: ','\npos: (6, 11)"]
+113 [label = "Chain"]
+113 -> 114
+113 -> 115
+114 [label = "term\nattr: ident\npos: (6, 15)"]
+115 [label = "Chain"]
+115 -> 116
+115 -> 117
+116 [label = "ident\nattr: NT_Add\npos: (6, 21)"]
+117 [label = "Chain"]
+111 [label = "RuleResultTail"]
+111 -> 118
+111 -> 119
+118 [label = "|\nattr: |\npos: (6, 28)"]
+119 [label = "RuleResult"]
+119 -> 120
+119 -> 121
+120 [label = "Chain"]
+120 -> 122
+120 -> 123
+122 [label = "term\nattr: eps\npos: (6, 30)"]
+123 [label = "Chain"]
+121 [label = "RuleResultTail"]
+109 [label = ";\nattr: ;\npos: (6, 33)"]
+105 [label = "RuleList"]
+105 -> 124
+105 -> 125
+124 [label = "Rule"]
+124 -> 126
+124 -> 127
+124 -> 128
+124 -> 129
+126 [label = "ident\nattr: T_Decl\npos: (7, 1)"]
+127 [label = "->\nattr: ->\npos: (7, 8)"]
+128 [label = "RuleResult"]
+128 -> 130
+128 -> 131
+130 [label = "Chain"]
+130 -> 132
+130 -> 133
+132 [label = "term\nattr: 'terminal'\npos: (7, 11)"]
+133 [label = "Chain"]
+133 -> 134
+133 -> 135
+134 [label = "term\nattr: term\npos: (7, 22)"]
+135 [label = "Chain"]
+135 -> 136
+135 -> 137
+136 [label = "ident\nattr: T_Add\npos: (7, 27)"]
+137 [label = "Chain"]
+137 -> 138
+137 -> 139
+138 [label = "term\nattr: ';'\npos: (7, 33)"]
+139 [label = "Chain"]
+131 [label = "RuleResultTail"]
+129 [label = ";\nattr: ;\npos: (7, 36)"]
+125 [label = "RuleList"]
+125 -> 140
+125 -> 141
+140 [label = "Rule"]
+140 -> 142
+140 -> 143
+140 -> 144
+140 -> 145
+142 [label = "ident\nattr: T_Add\npos: (8, 1)"]
+143 [label = "->\nattr: ->\npos: (8, 7)"]
+144 [label = "RuleResult"]
+144 -> 146
+144 -> 147
+146 [label = "Chain"]
+146 -> 148
+146 -> 149
+148 [label = "term\nattr: ','\npos: (8, 10)"]
+149 [label = "Chain"]
+149 -> 150
+149 -> 151
+150 [label = "term\nattr: term\npos: (8, 14)"]
+151 [label = "Chain"]
+151 -> 152
+151 -> 153
+152 [label = "ident\nattr: T_Add\npos: (8, 19)"]
+153 [label = "Chain"]
+147 [label = "RuleResultTail"]
+147 -> 154
+147 -> 155
+154 [label = "|\nattr: |\npos: (8, 25)"]
+155 [label = "RuleResult"]
+155 -> 156
+155 -> 157
+156 [label = "Chain"]
+156 -> 158
+156 -> 159
+158 [label = "term\nattr: eps\npos: (8, 27)"]
+159 [label = "Chain"]
+157 [label = "RuleResultTail"]
+145 [label = ";\nattr: ;\npos: (8, 30)"]
+141 [label = "RuleList"]
+141 -> 160
+141 -> 161
+160 [label = "Rule"]
+160 -> 162
+160 -> 163
+160 -> 164
+160 -> 165
+162 [label = "ident\nattr: A_Decl\npos: (9, 1)"]
+163 [label = "->\nattr: ->\npos: (9, 8)"]
+164 [label = "RuleResult"]
+164 -> 166
+164 -> 167
+166 [label = "Chain"]
+166 -> 168
+166 -> 169
+168 [label = "term\nattr: 'axiom'\npos: (9, 11)"]
+169 [label = "Chain"]
+169 -> 170
+169 -> 171
+170 [label = "term\nattr: ident\npos: (9, 19)"]
+171 [label = "Chain"]
+171 -> 172
+171 -> 173
+172 [label = "term\nattr: ';'\npos: (9, 25)"]
+173 [label = "Chain"]
+167 [label = "RuleResultTail"]
+165 [label = ";\nattr: ;\npos: (9, 28)"]
+161 [label = "RuleList"]
+161 -> 174
+161 -> 175
+174 [label = "Rule"]
+174 -> 176
+174 -> 177
+174 -> 178
+174 -> 179
+176 [label = "ident\nattr: RuleList\npos: (11, 1)"]
+177 [label = "->\nattr: ->\npos: (11, 10)"]
+178 [label = "RuleResult"]
+178 -> 180
+178 -> 181
+180 [label = "Chain"]
+180 -> 182
+180 -> 183
+182 [label = "ident\nattr: Rule\npos: (11, 13)"]
+183 [label = "Chain"]
+183 -> 184
+183 -> 185
+184 [label = "ident\nattr: RuleList\npos: (11, 18)"]
+185 [label = "Chain"]
+181 [label = "RuleResultTail"]
+179 [label = ";\nattr: ;\npos: (11, 26)"]
+175 [label = "RuleList"]
+175 -> 186
+175 -> 187
+186 [label = "Rule"]
+186 -> 188
+186 -> 189
+186 -> 190
+186 -> 191
+188 [label = "ident\nattr: RuleList\npos: (12, 1)"]
+189 [label = "->\nattr: ->\npos: (12, 10)"]
+190 [label = "RuleResult"]
+190 -> 192
+190 -> 193
+192 [label = "Chain"]
+192 -> 194
+192 -> 195
+194 [label = "term\nattr: eps\npos: (12, 13)"]
+195 [label = "Chain"]
+193 [label = "RuleResultTail"]
+191 [label = ";\nattr: ;\npos: (12, 16)"]
+187 [label = "RuleList"]
+187 -> 196
+187 -> 197
+196 [label = "Rule"]
+196 -> 198
+196 -> 199
+196 -> 200
+196 -> 201
+198 [label = "ident\nattr: Rule\npos: (13, 1)"]
+199 [label = "->\nattr: ->\npos: (13, 6)"]
+200 [label = "RuleResult"]
+200 -> 202
+200 -> 203
+202 [label = "Chain"]
+202 -> 204
+202 -> 205
+204 [label = "term\nattr: ident\npos: (13, 9)"]
+205 [label = "Chain"]
+205 -> 206
+205 -> 207
+206 [label = "term\nattr: '->'\npos: (13, 15)"]
+207 [label = "Chain"]
+207 -> 208
+207 -> 209
+208 [label = "ident\nattr: RuleResult\npos: (13, 20)"]
+209 [label = "Chain"]
+209 -> 210
+209 -> 211
+210 [label = "term\nattr: ';'\npos: (13, 31)"]
+211 [label = "Chain"]
+203 [label = "RuleResultTail"]
+201 [label = ";\nattr: ;\npos: (13, 34)"]
+197 [label = "RuleList"]
+197 -> 212
+197 -> 213
+212 [label = "Rule"]
+212 -> 214
+212 -> 215
+212 -> 216
+212 -> 217
+214 [label = "ident\nattr: RuleResult\npos: (14, 1)"]
+215 [label = "->\nattr: ->\npos: (14, 12)"]
+216 [label = "RuleResult"]
+216 -> 218
+216 -> 219
+218 [label = "Chain"]
+218 -> 220
+218 -> 221
+220 [label = "ident\nattr: Chain\npos: (14, 15)"]
+221 [label = "Chain"]
+221 -> 222
+221 -> 223
+222 [label = "ident\nattr: RuleResultTail\npos: (14, 21)"]
+223 [label = "Chain"]
+219 [label = "RuleResultTail"]
+217 [label = ";\nattr: ;\npos: (14, 35)"]
+213 [label = "RuleList"]
+213 -> 224
+213 -> 225
+224 [label = "Rule"]
+224 -> 226
+224 -> 227
+224 -> 228
+224 -> 229
+226 [label = "ident\nattr: RuleResultTail\npos: (15, 1)"]
+227 [label = "->\nattr: ->\npos: (15, 16)"]
+228 [label = "RuleResult"]
+228 -> 230
+228 -> 231
+230 [label = "Chain"]
+230 -> 232
+230 -> 233
+232 [label = "term\nattr: '|'\npos: (15, 19)"]
+233 [label = "Chain"]
+233 -> 234
+233 -> 235
+234 [label = "ident\nattr: RuleResult\npos: (15, 23)"]
+235 [label = "Chain"]
+231 [label = "RuleResultTail"]
+231 -> 236
+231 -> 237
+236 [label = "|\nattr: |\npos: (15, 34)"]
+237 [label = "RuleResult"]
+237 -> 238
+237 -> 239
+238 [label = "Chain"]
+238 -> 240
+238 -> 241
+240 [label = "term\nattr: eps\npos: (15, 36)"]
+241 [label = "Chain"]
+239 [label = "RuleResultTail"]
+229 [label = ";\nattr: ;\npos: (15, 39)"]
+225 [label = "RuleList"]
+225 -> 242
+225 -> 243
+242 [label = "Rule"]
+242 -> 244
+242 -> 245
+242 -> 246
+242 -> 247
+244 [label = "ident\nattr: Chain\npos: (16, 1)"]
+245 [label = "->\nattr: ->\npos: (16, 7)"]
+246 [label = "RuleResult"]
+246 -> 248
+246 -> 249
+248 [label = "Chain"]
+248 -> 250
+248 -> 251
+250 [label = "term\nattr: ident\npos: (16, 10)"]
+251 [label = "Chain"]
+251 -> 252
+251 -> 253
+252 [label = "ident\nattr: Chain\npos: (16, 16)"]
+253 [label = "Chain"]
+249 [label = "RuleResultTail"]
+247 [label = ";\nattr: ;\npos: (16, 21)"]
+243 [label = "RuleList"]
+243 -> 254
+243 -> 255
+254 [label = "Rule"]
+254 -> 256
+254 -> 257
+254 -> 258
+254 -> 259
+256 [label = "ident\nattr: Chain\npos: (17, 1)"]
+257 [label = "->\nattr: ->\npos: (17, 7)"]
+258 [label = "RuleResult"]
+258 -> 260
+258 -> 261
+260 [label = "Chain"]
+260 -> 262
+260 -> 263
+262 [label = "term\nattr: term\npos: (17, 10)"]
+263 [label = "Chain"]
+263 -> 264
+263 -> 265
+264 [label = "ident\nattr: Chain\npos: (17, 15)"]
+265 [label = "Chain"]
+261 [label = "RuleResultTail"]
+259 [label = ";\nattr: ;\npos: (17, 20)"]
+255 [label = "RuleList"]
+255 -> 266
+255 -> 267
+266 [label = "Rule"]
+266 -> 268
+266 -> 269
+266 -> 270
+266 -> 271
+268 [label = "ident\nattr: Chain\npos: (18, 1)"]
+269 [label = "->\nattr: ->\npos: (18, 7)"]
+270 [label = "RuleResult"]
+270 -> 272
+270 -> 273
+272 [label = "Chain"]
+272 -> 274
+272 -> 275
+274 [label = "term\nattr: kwepsilon\npos: (18, 10)"]
+275 [label = "Chain"]
+273 [label = "RuleResultTail"]
+271 [label = ";\nattr: ;\npos: (18, 19)"]
+267 [label = "RuleList"]
+267 -> 276
+267 -> 277
+276 [label = "Rule"]
+276 -> 278
+276 -> 279
+276 -> 280
+276 -> 281
+278 [label = "ident\nattr: Chain\npos: (19, 1)"]
+279 [label = "->\nattr: ->\npos: (19, 7)"]
+280 [label = "RuleResult"]
+280 -> 282
+280 -> 283
+282 [label = "Chain"]
+282 -> 284
+282 -> 285
+284 [label = "term\nattr: eps\npos: (19, 10)"]
+285 [label = "Chain"]
+283 [label = "RuleResultTail"]
+281 [label = ";\nattr: ;\npos: (19, 13)"]
+277 [label = "RuleList"]
+6 [label = "A_Decl"]
+6 -> 286
+6 -> 287
+6 -> 288
+286 [label = "KW_AXIOM\nattr: axiom\npos: (22, 1)"]
+287 [label = "ident\nattr: Program\npos: (22, 7)"]
+288 [label = ";\nattr: ;\npos: (22, 14)"]
+}

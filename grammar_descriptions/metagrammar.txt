@@ -1,0 +1,22 @@
+non-terminal Program, NT_Decl, NT_Add, T_Decl, T_Add, A_Decl, RuleList, Rule, RuleResult, RuleResultTail, Chain;
+terminal '->', ';', '|', ',', 'non-terminal', 'terminal', 'axiom', ident, term, kwepsilon;
+
+Program -> NT_Decl T_Decl RuleList A_Decl;
+NT_Decl -> 'non-terminal' ident NT_Add ';';
+NT_Add -> ',' ident NT_Add | eps;
+T_Decl -> 'terminal' term T_Add ';';
+T_Add -> ',' term T_Add | eps;
+A_Decl -> 'axiom' ident ';';
+
+RuleList -> Rule RuleList;
+RuleList -> eps;
+Rule -> ident '->' RuleResult ';';
+RuleResult -> Chain RuleResultTail;
+RuleResultTail -> '|' RuleResult | eps;
+Chain -> ident Chain;
+Chain -> term Chain;
+Chain -> kwepsilon;
+Chain -> eps;
+
+
+axiom Program;
