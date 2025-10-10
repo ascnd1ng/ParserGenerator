@@ -1,5 +1,5 @@
 import re
-from constants import *
+from .constants import *
 
 
 def lexer(text, patterns):

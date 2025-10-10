@@ -1,12 +1,6 @@
-import os
-import sys
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'generation'))
-
-from gen_pred_t import GeneratedPredictionTable
+from generation.gen_pred_t import GeneratedPredictionTable
 from make_table_generation import make_table_generation
-from constants import *
+from src.constants import *
 
 pt = GeneratedPredictionTable()
 

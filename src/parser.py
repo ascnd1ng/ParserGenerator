@@ -87,3 +87,8 @@ class LR1Parse:
         self.action = action
         self.goto = goto
         self.magazine = deque()
+
+    def parse(self, axiom):
+        result = ()
+
+

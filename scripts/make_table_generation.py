@@ -1,14 +1,4 @@
-import os
-import sys
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
-
-from lexer import lexer
-from parser import TopDownParse, Node
-from grammar import Grammar
-from first_follow_finder import FirstFollowFinder
-from table import Table
-from checker import Checker
+from src import lexer, TopDownParse, Node, Grammar, FirstFollowFinder, Table, Checker
 
 
 def make_table_generation(pt, i_p, g_p, t_p, patterns, axiom):

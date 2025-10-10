@@ -1,6 +1,5 @@
-from constants import reverse_dict
+from .constants import reverse_dict
 from pprint import pprint, pformat
-from grammar import Rule
 import autopep8
 
 
