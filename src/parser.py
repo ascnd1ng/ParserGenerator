@@ -79,16 +79,3 @@ class TopDownParse:
                 raise ValueError(f"Non-terminal mismatch {x.value}, {a}")
 
         return root
-
-
-class LR1Parse:
-    def __init__(self, tokens, action, goto):
-        self.tokens = tokens
-        self.action = action
-        self.goto = goto
-        self.magazine = deque()
-
-    def parse(self, axiom):
-        result = ()
-
-
