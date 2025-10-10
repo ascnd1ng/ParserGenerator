@@ -41,12 +41,11 @@ class Node:
 class TopDownParse:
     def __init__(self, tokens, PT):
         self.tokens = tokens
-        self.PT = PT()
+        self.PT = PT
         self.magazine = deque()
 
     def parse(self, axiom):
         root = Node(axiom)
-        # root = Node('E1')
         self.magazine.append(root)
         self.magazine.append(Node('END'))
         token_ind = 0
@@ -80,3 +79,11 @@ class TopDownParse:
                 raise ValueError(f"Non-terminal mismatch {x.value}, {a}")
 
         return root
+
+
+class LR1Parse:
+    def __init__(self, tokens, action, goto):
+        self.tokens = tokens
+        self.action = action
+        self.goto = goto
+        self.magazine = deque()

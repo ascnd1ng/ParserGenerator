@@ -12,7 +12,7 @@ i_p = '../grammar_descriptions/arithmetic_expression.txt'
 g_p = '../generation/graph312expression.dot'
 t_p = None
 
-pt = GeneratedPredictionTable
+pt = GeneratedPredictionTable()
 patterns = patterns_calc
 axiom = 'E1'
 
