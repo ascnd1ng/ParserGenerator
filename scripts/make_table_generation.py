@@ -1,5 +1,5 @@
 from src import lexer, TopDownParse, Node, Grammar, FirstFollowFinder, Table, Checker
-from src.lr1parser import LR1Parse
+from src.lr1parser import LR1Parser
 from src.lr1table import LR1Nt, LR1T, LR1Rules, LR1Axiom
 
 
@@ -10,8 +10,8 @@ def make_table_generation(pt, i_p, g_p, t_p, patterns, axiom):
     print(tokens)
 
     # root = TopDownParse(tokens, pt).parse(axiom)
-    LR1Parser = LR1Parse(tokens, [LR1Nt(), LR1T(), LR1Rules(), LR1Axiom()])
-    root = LR1Parser.parse_all()
+    lr1parser = LR1Parser(tokens, [LR1Nt(), LR1T(), LR1Rules(), LR1Axiom()])
+    root = lr1parser.parse_all()
     with open(g_p, 'w') as f:
         f.write('digraph {\n')
         root.print_graph(f)
