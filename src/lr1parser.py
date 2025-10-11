@@ -1,10 +1,8 @@
 from collections import deque
 
 from src import lexer
-from constants import patterns_meta
 from src.lr1table import *
 from src import Node
-
 
 
 def is_finish(action):
@@ -34,7 +32,7 @@ def extract_NT(reduce):  #[r2, X, u]
     return reduce[1]
 
 
-class LR1Parse:
+class LR1Parser:
     def __init__(self, tokens, LR1s):
         self.goto = None
         self.action = None
@@ -96,14 +94,14 @@ class LR1Parse:
             else:
                 raise ValueError(f"LR(1) parse ERROR")
 
-i_p = '../grammar_descriptions/metagrammar.txt'
-with open(i_p, 'r') as f:
-    text = f.read()
-tokens = lexer(text, patterns_meta)
-LR1Parser = LR1Parse(tokens, [LR1Nt(), LR1T(), LR1Rules(), LR1Axiom()])
-root = LR1Parser.parse_all()
-
-with open('graph.dot', 'w') as f:
-    f.write('digraph {\n')
-    root.print_graph(f)
-    f.write('}')
+# i_p = '../grammar_descriptions/metagrammar.txt'
+# with open(i_p, 'r') as f:
+#     text = f.read()
+# tokens = lexer(text, patterns_meta)
+# LR1Parser = LR1Parser(tokens, [LR1Nt(), LR1T(), LR1Rules(), LR1Axiom()])
+# root = LR1Parser.parse_all()
+#
+# with open('graph.dot', 'w') as f:
+#     f.write('digraph {\n')
+#     root.print_graph(f)
+#     f.write('}')
