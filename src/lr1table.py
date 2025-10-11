@@ -19,13 +19,13 @@ class LR1Nt:
     def __init__(self):
         self.action = {
             (0, KW_NT): 's2',
-            (1, END): 'f',
+            (1, KW_T): 'f',
             (2, IDENT): 's3',
             (3, ';'): ['r3', NT_Add, 'ε'],
             (3, ','): 's5',
             (4, ';'): 's6',
             (5, IDENT): 's7',
-            (6, END): ['r1', NT_Decl,  [KW_NT, IDENT, NT_Add, ';']],
+            (6, KW_T): ['r1', NT_Decl,  [KW_NT, IDENT, NT_Add, ';']],
             (7, ';'): ['r3', NT_Add, 'ε'],
             (7, ','): 's5',
             (8, ';'): ['r2', NT_Add, [',', IDENT, NT_Add]]
@@ -41,13 +41,13 @@ class LR1T:
     def __init__(self):
         self.action = {
             (0, KW_T): 's2',
-            (1, END): 'f',
+            (1, IDENT): 'f',
             (2, TERMINAL): 's3',
             (3, ';'): ['r3', T_Add, 'ε'],
             (3, ','): 's5',
             (4, ';'): 's6',
             (5, TERMINAL): 's7',
-            (6, END): ['r1', T_Decl,  [KW_T, TERMINAL, T_Add, ';']],
+            (6, IDENT): ['r1', T_Decl,  [KW_T, TERMINAL, T_Add, ';']],
             (7, ';'): ['r3', T_Add, 'ε'],
             (7, ','): 's5',
             (8, ';'): ['r2', T_Add, [',', TERMINAL, T_Add]]
@@ -63,16 +63,16 @@ class LR1Rules:
     def __init__(self):
         self.action = {
             (0, IDENT): 's3',
-            (0, END): ['r2', RuleList,  'ε'],
+            (0, KW_AXIOM): ['r2', RuleList,  'ε'],
 
-            (1, END): 'f',
+            (1, KW_AXIOM): 'f',
 
             (2, IDENT): 's3',
-            (2, END): ['r2', RuleList,  'ε'],
+            (2, KW_AXIOM): ['r2', RuleList,  'ε'],
 
             (3, '->'): 's5',
 
-            (4, END): ['r1', RuleList, [Rule, RuleList]],
+            (4, KW_AXIOM): ['r1', RuleList, [Rule, RuleList]],
 
             (5, IDENT): 's8',
             (5, ';'): ['r10', Chain, 'ε'],
@@ -101,7 +101,7 @@ class LR1Rules:
             (10, '|'): ['r9', Chain, [KW_EPSILON]],
 
             (11, IDENT): ['r3', Rule, [IDENT, '->', RuleResult, ';']],
-            (11, END): ['r3', Rule, [IDENT, '->', RuleResult, ';']],
+            (11, KW_AXIOM): ['r3', Rule, [IDENT, '->', RuleResult, ';']],
 
             (12, ';'): ['r4', RuleResult, [Chain, RuleResultTail]],
 

@@ -35,17 +35,29 @@ def extract_NT(reduce):  #[r2, X, u]
 
 
 class LR1Parse:
-    def __init__(self, tokens, action, goto):
+    def __init__(self, tokens, LR1s):
+        self.goto = None
+        self.action = None
         self.tokens = tokens
-        self.action = action
-        self.goto = goto
+        self.LR1s = LR1s
         self.magazine = deque()
         self.tree_stack = deque()
 
-    def parse(self):
-        # result = list()
-        self.magazine.append(0)
+    def parse_all(self):
         token_ind = 0
+        roots = []
+        for lr1table in self.LR1s:
+            self.action = lr1table.action
+            self.goto = lr1table.goto
+            root, token_ind = self.parse(token_ind)
+            roots.append(root)
+        root = Node('Program')
+        for c in roots:
+            root.add_child(c)
+        return root
+
+    def parse(self, token_ind):
+        self.magazine.append(0)
         a = self.tokens[token_ind]
 
         while 1:
@@ -71,7 +83,6 @@ class LR1Parse:
                     self.magazine.pop()
                 s1 = self.magazine[-1]
                 self.magazine.append(self.goto[(s1, X)])
-                # result.append(cur_action)
 
                 children = [self.tree_stack.pop() for _ in range(out_len)][::-1]
                 new_node = Node(X)
@@ -81,51 +92,18 @@ class LR1Parse:
 
             elif is_finish(cur_action):
                 root = self.tree_stack.pop()
-                return root
+                return root, token_ind
             else:
                 raise ValueError(f"LR(1) parse ERROR")
 
-
-def lr1parse(text, tokens, LR1):
-    lr1 = LR1Parse(tokens, LR1().action, LR1().goto)
-    root = lr1.parse()
-    with open("lr1_test.dot", 'w') as f:
-        f.write('digraph {\n')
-        root.print_graph(f)
-        f.write('}')
-
-
-text = 'axiom Program;'
+i_p = '../grammar_descriptions/metagrammar.txt'
+with open(i_p, 'r') as f:
+    text = f.read()
 tokens = lexer(text, patterns_meta)
-LR1 = LR1Axiom
-lr1parse(text, tokens, LR1)
+LR1Parser = LR1Parse(tokens, [LR1Nt(), LR1T(), LR1Rules(), LR1Axiom()])
+root = LR1Parser.parse_all()
 
-text = 'non-terminal Program, NT_Decl, NT_Add, T_Decl, T_Add, A_Decl, RuleList, Rule, RuleResult, RuleResultTail, Chain;'
-tokens = lexer(text, patterns_meta)
-LR1 = LR1Nt
-lr1parse(text, tokens, LR1)
-
-text = "terminal '->', ';', '|', ',', 'non-terminal', 'terminal', 'axiom', ident, term, kwepsilon;"
-tokens = lexer(text, patterns_meta)
-LR1 = LR1T
-lr1parse(text, tokens, LR1)
-
-text = """Program -> NT_Decl T_Decl RuleList A_Decl;
-NT_Decl -> 'non-terminal' ident NT_Add ';';
-NT_Add -> ',' ident NT_Add | eps;
-T_Decl -> 'terminal' term T_Add ';';
-T_Add -> ',' term T_Add | eps;
-A_Decl -> 'axiom' ident ';';
-
-RuleList -> Rule RuleList;
-RuleList -> eps;
-Rule -> ident '->' RuleResult ';';
-RuleResult -> Chain RuleResultTail;
-RuleResultTail -> '|' RuleResult | eps;
-Chain -> ident Chain;
-Chain -> term Chain;
-Chain -> kwepsilon;
-Chain -> eps;"""
-tokens = lexer(text, patterns_meta)
-LR1 = LR1Rules
-lr1parse(text, tokens, LR1)
+with open('graph.dot', 'w') as f:
+    f.write('digraph {\n')
+    root.print_graph(f)
+    f.write('}')
