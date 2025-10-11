@@ -17,9 +17,9 @@ class Node:
 
     def print_graph(self, file):
         label_lines = [str(self.value)]
-        if hasattr(self, 'attr') and self.attr:
+        if self.attr:
             label_lines.append(f'attr: {self.attr}')
-        if hasattr(self, 'pos') and self.pos:
+        if self.pos:
             label_lines.append(f'pos: {self.pos}')
 
         formatted_label = '\\n'.join(label_lines)

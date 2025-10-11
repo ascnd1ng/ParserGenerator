@@ -3,48 +3,8 @@ from collections import deque
 from src import lexer
 from constants import patterns_meta
 from src.lr1table import *
+from src import Node
 
-lr1table = {
-    (0, 'i'): 's4',
-
-    (1, '+'): 's5',
-    (1, 'END'): 'f',
-
-    (2, '+'): ['r1', 'E', 'T'],
-    (2, '*'): 's6',
-    (2, 'END'): ['r1', 'E', 'T'],
-
-    (3, '+'): ['r3', 'T', 'F'],
-    (3, '*'): ['r3', 'T', 'F'],
-    (3, 'END'): ['r3', 'T', 'F'],
-
-    (4, '+'): ['r5', 'F', 'i'],
-    (4, '*'): ['r5', 'F', 'i'],
-    (4, 'END'): ['r5', 'F', 'i'],
-
-    (5, 'i'): 's4',
-
-    (6, 'i'): 's4',
-
-    (7, '+'): ['r2', 'E', 'E+T'],
-    (7, '*'): 's6',
-    (7, 'END'): ['r2', 'E', 'E+T'],
-
-    (8, '+'): ['r4', 'T', 'T*F'],
-    (8, '*'): ['r4', 'T', 'T*F'],
-    (8, 'END'): ['r4', 'T', 'T*F']
-}
-
-goto = {
-    (0, 'E'): 1,
-    (0, 'T'): 2,
-    (0, 'F'): 3,
-
-    (5, 'T'): 7,
-    (5, 'F'): 3,
-
-    (6, 'F'): 8
-}
 
 
 def is_finish(action):
@@ -80,10 +40,10 @@ class LR1Parse:
         self.action = action
         self.goto = goto
         self.magazine = deque()
+        self.tree_stack = deque()
 
     def parse(self):
-        result = list()
-        # self.magazine.append('END')
+        # result = list()
         self.magazine.append(0)
         token_ind = 0
         a = self.tokens[token_ind]
@@ -95,8 +55,15 @@ class LR1Parse:
             print(cur_action)
             if is_shift(cur_action):
                 self.magazine.append(extract_state_name(cur_action))
+
+                new_node = Node(a[0])
+                new_node.pos = a[1]
+                new_node.attr = a[2]
+                self.tree_stack.append(new_node)
+
                 token_ind += 1
                 a = self.tokens[token_ind]
+
             elif is_reduce(cur_action):
                 out_len = extract_out_len(cur_action)
                 X = extract_NT(cur_action)
@@ -104,17 +71,28 @@ class LR1Parse:
                     self.magazine.pop()
                 s1 = self.magazine[-1]
                 self.magazine.append(self.goto[(s1, X)])
-                result.append(cur_action)
+                # result.append(cur_action)
+
+                children = [self.tree_stack.pop() for _ in range(out_len)][::-1]
+                new_node = Node(X)
+                for c in children:
+                    new_node.add_child(c)
+                self.tree_stack.append(new_node)
+
             elif is_finish(cur_action):
-                return result
+                root = self.tree_stack.pop()
+                return root
             else:
                 raise ValueError(f"LR(1) parse ERROR")
 
 
 def lr1parse(text, tokens, LR1):
     lr1 = LR1Parse(tokens, LR1().action, LR1().goto)
-    res = lr1.parse()
-    print(res)
+    root = lr1.parse()
+    with open("lr1_test.dot", 'w') as f:
+        f.write('digraph {\n')
+        root.print_graph(f)
+        f.write('}')
 
 
 text = 'axiom Program;'
@@ -132,7 +110,14 @@ tokens = lexer(text, patterns_meta)
 LR1 = LR1T
 lr1parse(text, tokens, LR1)
 
-text = """RuleList -> Rule RuleList;
+text = """Program -> NT_Decl T_Decl RuleList A_Decl;
+NT_Decl -> 'non-terminal' ident NT_Add ';';
+NT_Add -> ',' ident NT_Add | eps;
+T_Decl -> 'terminal' term T_Add ';';
+T_Add -> ',' term T_Add | eps;
+A_Decl -> 'axiom' ident ';';
+
+RuleList -> Rule RuleList;
 RuleList -> eps;
 Rule -> ident '->' RuleResult ';';
 RuleResult -> Chain RuleResultTail;
@@ -144,39 +129,3 @@ Chain -> eps;"""
 tokens = lexer(text, patterns_meta)
 LR1 = LR1Rules
 lr1parse(text, tokens, LR1)
-
-
-
-# Заготовка построения дерева
-
-# class Node:
-#     def __init__(self, value, children=None):
-#         self.value = value
-#         self.children = children or []  # только названия детей
-#
-#     def __repr__(self):
-#         return f"{self.value}: {self.children}"
-
-
-# rules = [['r5', 'F', 'i'], ['r3', 'T', 'F'], ['r1', 'E', 'T'],
-#          ['r5', 'F', 'i'], ['r3', 'T', 'F'], ['r5', 'F', 'i'],
-#          ['r4', 'T', 'T*F'], ['r2', 'E', 'E+T']]
-#
-# stack = []
-#
-# for rule in rules:
-#     _, lhs, rhs = rule
-#     rhs_symbols = list(rhs)
-#     children = []
-#
-#     for symbol in rhs_symbols[::-1]:
-#         if stack:
-#             child_node = stack.pop()
-#             children.insert(0, child_node.value)
-#         else:
-#             children.insert(0, symbol)
-#
-#     stack.append(Node(lhs, children))
-#
-# tree_root = stack[0]
-# print(tree_root)
