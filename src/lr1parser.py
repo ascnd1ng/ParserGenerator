@@ -1,5 +1,9 @@
 from collections import deque
 
+from src import lexer
+from constants import patterns_meta
+from src.lr1table import *
+
 lr1table = {
     (0, 'i'): 's4',
 
@@ -60,6 +64,8 @@ def extract_state_name(shift):  #s12
 
 
 def extract_out_len(reduce):  #[r2, X, u]
+    if reduce[-1] == 'ε':
+        return 0
     out_len = len(reduce[-1])
     return int(out_len)
 
@@ -85,7 +91,7 @@ class LR1Parse:
         while 1:
             s = self.magazine[-1]
             print(self.magazine, end=', ')
-            cur_action = self.action[(s, a)]
+            cur_action = self.action[(s, a[0])]
             print(cur_action)
             if is_shift(cur_action):
                 self.magazine.append(extract_state_name(cur_action))
@@ -105,11 +111,41 @@ class LR1Parse:
                 raise ValueError(f"LR(1) parse ERROR")
 
 
-tokens = list('i+i*i')
-tokens.append('END')
-lr1 = LR1Parse(tokens, lr1table, goto)
-res = lr1.parse()
-print(res)
+def lr1parse(text, tokens, LR1):
+    lr1 = LR1Parse(tokens, LR1().action, LR1().goto)
+    res = lr1.parse()
+    print(res)
+
+
+text = 'axiom Program;'
+tokens = lexer(text, patterns_meta)
+LR1 = LR1Axiom
+lr1parse(text, tokens, LR1)
+
+text = 'non-terminal Program, NT_Decl, NT_Add, T_Decl, T_Add, A_Decl, RuleList, Rule, RuleResult, RuleResultTail, Chain;'
+tokens = lexer(text, patterns_meta)
+LR1 = LR1Nt
+lr1parse(text, tokens, LR1)
+
+text = "terminal '->', ';', '|', ',', 'non-terminal', 'terminal', 'axiom', ident, term, kwepsilon;"
+tokens = lexer(text, patterns_meta)
+LR1 = LR1T
+lr1parse(text, tokens, LR1)
+
+text = """RuleList -> Rule RuleList;
+RuleList -> eps;
+Rule -> ident '->' RuleResult ';';
+RuleResult -> Chain RuleResultTail;
+RuleResultTail -> '|' RuleResult | eps;
+Chain -> ident Chain;
+Chain -> term Chain;
+Chain -> kwepsilon;
+Chain -> eps;"""
+tokens = lexer(text, patterns_meta)
+LR1 = LR1Rules
+lr1parse(text, tokens, LR1)
+
+
 
 # Заготовка построения дерева
 
@@ -120,7 +156,6 @@ print(res)
 #
 #     def __repr__(self):
 #         return f"{self.value}: {self.children}"
-
 
 
 # rules = [['r5', 'F', 'i'], ['r3', 'T', 'F'], ['r1', 'E', 'T'],
