@@ -24,6 +24,28 @@ reverse_dict = {"'terminal'": "'KW_T'",
                 "'kwepsilon'": "'KW_EPSILON'",
                 "'$'": "'END'"
                 }
+reverse_dict_lr1 = {
+    'terminal': "'KW_T'",
+    'non-terminal': "'KW_NT'",
+    'axiom': "'KW_AXIOM'",
+    'kwepsilon': "'KW_EPSILON'",
+    '$': "'END'",
+    'ident': "'KW_NT'",
+    'term': "'KW_T'"
+}
+reverse_dict_nt = {
+    'Program': "'Program'",
+    'Rule': "'Rule'",
+    'NT_Decl': "'NT_Decl'",
+    'T_Decl': "'T_Decl'",
+    'A_Decl': "'A_Decl'",
+    'RuleList': "'RuleList'",
+    'NT_Add': "'NT_Add'",
+    'T_Add': "'T_Add'",
+    'RuleResult': "'RuleResult'",
+    'RuleResultTail': "'RuleResultTail'",
+    'Chain': "'Chain'"
+}
 
 patterns_meta = [
     (r'non-terminal', KW_NT),
