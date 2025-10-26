@@ -25,13 +25,13 @@ reverse_dict = {"'terminal'": "'KW_T'",
                 "'$'": "'END'"
                 }
 reverse_dict_lr1 = {
-    'terminal': "'KW_T'",
-    'non-terminal': "'KW_NT'",
-    'axiom': "'KW_AXIOM'",
+    "'terminal'": "'KW_T'",
+    "'non-terminal'": "'KW_NT'",
+    "'axiom'": "'KW_AXIOM'",
     'kwepsilon': "'KW_EPSILON'",
     '$': "'END'",
-    'ident': "'KW_NT'",
-    'term': "'KW_T'"
+    'ident': "'ident'",
+    'term': "'term'"
 }
 
 patterns_meta = [
