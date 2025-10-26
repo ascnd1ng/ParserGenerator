@@ -1,4 +1,4 @@
-from src import lexer, TopDownParse, Node, Grammar, FirstFollowFinder, Table, Checker, reverse_dict_lr1, reverse_dict_nt
+from src import lexer, TopDownParse, Node, Grammar, FirstFollowFinder, Table, Checker, reverse_dict_lr1
 from src.lr1parser import LR1Parser
 from src.lr1table import LR1Nt, LR1T, LR1Rules, LR1Axiom
 from src.lr1table_builder import LR1ParserTableBuilder
