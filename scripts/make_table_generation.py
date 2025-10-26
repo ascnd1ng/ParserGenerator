@@ -25,8 +25,7 @@ def generate_lr1_class(action_data, goto_data, file_path):
         file.write("        self.goto = {\n")
         for state, gotos in goto_data.items():
             for symbol, target in gotos.items():
-                if symbol in reverse_dict_nt:
-                    symbol = reverse_dict_nt[symbol]
+                symbol = f"{symbol}"
                 file.write(f"            ({state}, {symbol}): {target},\n")
         file.write("        }\n")
 
