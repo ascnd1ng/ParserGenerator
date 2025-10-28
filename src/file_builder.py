@@ -1,5 +1,3 @@
-
-
 def remove_outer_quotes(s):
     if s.startswith("'") and s.endswith("'"):
         return s[1:-1]

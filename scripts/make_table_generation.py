@@ -1,5 +1,5 @@
 from pprint import pprint
-from src import lexer, Node, Grammar, FirstFinder, Checker
+from src import lexer, Grammar, FirstFinder, Checker
 from src.lr1parser import LR1Parser
 from src.lr1table_builder import LR1ParserTableBuilder
 from src.file_builder import generate_lr1_class

@@ -1,7 +1,4 @@
 from collections import deque
-
-from src import lexer
-from src.lr1table import *
 from src import Node
 
 

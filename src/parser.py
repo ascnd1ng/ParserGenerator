@@ -1,6 +1,3 @@
-from collections import deque
-
-
 class Node:
     num = 0
 
