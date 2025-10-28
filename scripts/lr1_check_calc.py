@@ -8,9 +8,8 @@ t_p = None
 
 pt = [LR1()]
 patterns = patterns_calc
-axiom = 'E1'
 
-root = lr1_make_table_generation(pt, i_p, g_p, t_p, patterns, axiom)
+root = lr1_make_table_generation(pt, i_p, g_p, t_p, patterns)
 
 res = []
 

@@ -7,6 +7,5 @@ i_p = '../grammar_descriptions/calculator_grammar.txt'
 g_p = '../generation/graph_build_calc.dot'
 t_p = '../generation/gen_calc_lr1_table.py'
 patterns = patterns_meta
-axiom = 'Program'
 
-lr1_make_table_generation(pt, i_p, g_p, t_p, patterns, axiom)
+lr1_make_table_generation(pt, i_p, g_p, t_p, patterns)
