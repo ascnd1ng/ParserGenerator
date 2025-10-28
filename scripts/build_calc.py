@@ -4,7 +4,7 @@ from src.constants import *
 
 pt = [LR1()]
 i_p = '../grammar_descriptions/calculator_grammar.txt'
-g_p = '../generation/graph_build_calc.dot'
+g_p = '../generation/build_calc.dot'
 t_p = '../generation/gen_calc_lr1_table.py'
 patterns = patterns_meta
 

@@ -3,7 +3,7 @@ from scripts.make_table_generation import lr1_make_table_generation
 from src.constants import *
 
 i_p = '../grammar_descriptions/arithmetic_expression.txt'
-g_p = '../generation/graph312expression.dot'
+g_p = '../generation/check_calc.dot'
 t_p = None
 
 pt = [LR1()]

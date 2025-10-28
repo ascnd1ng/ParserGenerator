@@ -5,7 +5,7 @@ pt = [LR1Nt(), LR1T(), LR1Rules(), LR1Axiom()]
 
 
 i_p = '../grammar_descriptions/metagrammar.txt'
-g_p = '../generation/gen_table.dot'
+g_p = '../generation/build_table.dot'
 t_p = '../generation/gen_lr1_table.py'
 patterns = patterns_meta
 
