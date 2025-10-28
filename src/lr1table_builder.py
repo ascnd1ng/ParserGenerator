@@ -4,9 +4,9 @@ from src import END, EPS, Z, SHIFT, REDUCE, ACCEPT
 
 
 class LR1ParserTableBuilder:
-    def __init__(self, terminals, non_terminals, rules, axiom, first):
-        self.terminals = terminals
-        self.non_terminals = non_terminals
+    def __init__(self, nts, ts, rules, axiom, first):
+        self.ts = ts
+        self.nts = nts
         self.rules = rules
         self.axiom = axiom
         self.first = first
@@ -46,7 +46,7 @@ class LR1ParserTableBuilder:
             nt, out, dot_ind, lookahead = queue.popleft()
             if dot_ind < len(out):
                 symbol = out[dot_ind]
-                if symbol in self.non_terminals:
+                if symbol in self.nts:
                     after_dot = out[dot_ind + 1:] + (lookahead,)
                     lookaheads = self.first_of_sequence(after_dot)
                     final_lookaheads = set()
@@ -75,7 +75,7 @@ class LR1ParserTableBuilder:
         initial = self.closure([start_rule])
         self.states.append(initial)
         queue = deque([initial])
-        symbols = list(self.terminals) + list(self.non_terminals)
+        symbols = list(self.ts) + list(self.nts)
         while queue:
             state = queue.popleft()
             for symbol in symbols:
@@ -100,12 +100,12 @@ class LR1ParserTableBuilder:
                     next_state = self.goto(state, symbol)
                     next_state_ind = self.states.index(next_state)
 
-                    if symbol in self.terminals:
+                    if symbol in self.ts:
                         self.action_table[state_ind][symbol] = [SHIFT, next_state_ind]
                     else:
                         self.goto_table[state_ind][symbol] = next_state_ind
                 else:
-                    if nt != 'Z':
+                    if nt != Z:
                         self.action_table[state_ind][lookahead] = [REDUCE, nt, out]
                     else:
                         self.action_table[state_ind][lookahead] = [ACCEPT, nt, out]

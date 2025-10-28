@@ -32,7 +32,7 @@ def lr1_make_table_generation(pt, i_p, g_p, t_p, patterns):
     fff = FirstFinder(nts, ts, rules, axioms)
     first = fff.find()
 
-    t_b = LR1ParserTableBuilder(ts, nts, rules, axioms[0], first)
+    t_b = LR1ParserTableBuilder(nts, ts, rules, axioms[0], first)
 
     states = t_b.count_states()
     pprint(states)
