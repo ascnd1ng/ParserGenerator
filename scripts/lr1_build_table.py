@@ -6,7 +6,7 @@ pt = PredictionTable()
 
 
 i_p = '../grammar_descriptions/metagrammar.txt'
-g_p = '../generation/graph_check_calc.dot'
+g_p = '../generation/gen_table.dot'
 t_p = '../generation/gen_lr1_table.py'
 patterns = patterns_meta
 axiom = 'Program'

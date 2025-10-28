@@ -1,1 +1,6 @@
-non-terminal X1, Y1, Z2;
+non-terminal X1;
+terminal '!';
+
+X1 -> '!';
+
+axiom X1;

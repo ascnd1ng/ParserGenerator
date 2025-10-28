@@ -16,11 +16,11 @@ class LR1ParserTableBuilder:
 
     def _index_rules(self):
         index = defaultdict(list)
-        for x in self.rules:
-            lhs = x.nt
-            rhs = x.out
-            for i in rhs:
-                index[lhs].append(tuple(i))
+        for rule in self.rules:
+            nt = rule.nt
+            out = rule.out
+            for i in out:
+                index[nt].append(tuple(i))
         return index
 
     def first_of_sequence(self, sequence):
@@ -41,12 +41,12 @@ class LR1ParserTableBuilder:
         queue = deque(items)
 
         while queue:
-            nt, out, dot, lookahead = queue.popleft()
-            if dot < len(out):
-                symbol = out[dot]
+            nt, out, dot_ind, lookahead = queue.popleft()
+            if dot_ind < len(out):
+                symbol = out[dot_ind]
                 if symbol in self.non_terminals:
-                    beta = out[dot + 1:] + (lookahead,)
-                    lookaheads = self.first_of_sequence(beta) # ТУТ
+                    after_dot = out[dot_ind + 1:] + (lookahead,)
+                    lookaheads = self.first_of_sequence(after_dot)
                     final_lookaheads = set()
                     for la in lookaheads:
                         if la == 'eps':
@@ -61,11 +61,11 @@ class LR1ParserTableBuilder:
                                 queue.append(item)
         return frozenset(closure_set)
 
-    def goto(self, items, symbol):
+    def goto(self, state, symbol):
         moved = set()
-        for lhs, rhs, dot, lookahead in items:
-            if dot < len(rhs) and rhs[dot] == symbol:
-                moved.add((lhs, rhs, dot + 1, lookahead))
+        for nt, out, dot_ind, lookahead in state:
+            if dot_ind < len(out) and out[dot_ind] == symbol:
+                moved.add((nt, out, dot_ind + 1, lookahead))
         return self.closure(moved) if moved else frozenset()
 
     def count_states(self):
@@ -84,3 +84,27 @@ class LR1ParserTableBuilder:
         return self.states
 
     def build_tables(self):
+        for state_ind, state in enumerate(self.states):
+            self.goto_table[state_ind] = {}
+            self.action_table[state_ind] = {}
+            for item in state:
+                nt = item[0]
+                dot_ind = item[2]
+                out = item[1]
+                lookahead = item[3]
+
+                if (dot_ind < len(out)) and (out != ('eps',)):
+                    symbol = out[dot_ind]
+                    next_state = self.goto(state, symbol)
+                    next_state_ind = self.states.index(next_state)
+
+                    if symbol in self.terminals:
+                        self.action_table[state_ind][symbol] = ['shift', next_state_ind]
+                    else:
+                        self.goto_table[state_ind][symbol] = next_state_ind
+                else:
+                    if nt != 'Z':
+                        self.action_table[state_ind][lookahead] = ['reduce', nt, out]
+                    else:
+                        self.action_table[state_ind][lookahead] = ['accept', nt, out]
+        return self.action_table, self.goto_table

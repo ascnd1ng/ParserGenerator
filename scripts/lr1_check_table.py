@@ -4,7 +4,7 @@ from src.constants import *
 
 pt = [LR1()]
 i_p = '../grammar_descriptions/metagrammar.txt'
-g_p = '../generation/graph.dot'
+g_p = '../generation/check_table.dot'
 t_p = '../generation/gen_lr1_table.py'
 patterns = patterns_meta
 axiom = 'Program'

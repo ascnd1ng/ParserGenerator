@@ -1,10 +1,10 @@
 from pprint import pprint
 
-from src import lexer, TopDownParse, Node, Grammar, FirstFollowFinder, Checker, reverse_dict_lr1
+from src import lexer, Node, Grammar, FirstFollowFinder, Checker, reverse_dict_lr1
 from src.lr1parser import LR1Parser
 from src.lr1table import LR1Nt, LR1T, LR1Rules, LR1Axiom
 from src.lr1table_builder import LR1ParserTableBuilder
-from src.table_builder import generate_lr1_class
+from src.file_builder import generate_lr1_class
 
 
 def lr1_make_table_generation(pt, i_p, g_p, t_p, patterns, axiom):
@@ -13,7 +13,6 @@ def lr1_make_table_generation(pt, i_p, g_p, t_p, patterns, axiom):
     tokens = lexer(text, patterns)
     print(tokens)
 
-    # root = TopDownParse(tokens, pt).parse(axiom)
     lr1parser = LR1Parser(tokens, pt)
     root = lr1parser.parse_all()
     with open(g_p, 'w') as f:
@@ -35,11 +34,17 @@ def lr1_make_table_generation(pt, i_p, g_p, t_p, patterns, axiom):
     fff = FirstFollowFinder(nts, ts, rules, axioms)
     first, _ = fff.find()
 
-    nt_rules = [rules[1], rules[2]]
-    print(*nt_rules, sep="\n")
-    t_b = LR1ParserTableBuilder(ts, nts, nt_rules,'NT_Decl', first)
+    # nt_rules = [rules[1], rules[2]]
+    # print(*nt_rules, sep="\n")
+    # t_b = LR1ParserTableBuilder(ts, nts, nt_rules,'NT_Decl', first)
+
+    # nt_rules = [rules[1], rules[2]]
+    # print(*nt_rules, sep="\n")
+    t_b = LR1ParserTableBuilder(ts, nts, rules, 'Program', first)
+
     states = t_b.count_states()
     pprint(states)
+
 
     a_t, g_t = t_b.build_tables()
     print(a_t)
