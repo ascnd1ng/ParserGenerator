@@ -1,8 +1,7 @@
 from src.lr1table import LR1Axiom, LR1Rules, LR1T, LR1Nt
-from src.prediction_table import PredictionTable
 from make_table_generation import lr1_make_table_generation
 from src.constants import *
-pt = PredictionTable()
+pt = [LR1Nt(), LR1T(), LR1Rules(), LR1Axiom()]
 
 
 i_p = '../grammar_descriptions/metagrammar.txt'
