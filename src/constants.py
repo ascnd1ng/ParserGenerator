@@ -38,3 +38,10 @@ patterns_calc = [
     (r'\(', '('),
     (r'\)', ')')
 ]
+
+SHIFT = 'shift'
+REDUCE = 'reduce'
+ACCEPT = 'accept'
+EPS_LETTER = 'ε'
+EPS = 'eps'
+Z = 'Z'

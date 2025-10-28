@@ -1,5 +1,7 @@
 from collections import defaultdict, deque
 
+from src import END, EPS, Z, SHIFT, REDUCE, ACCEPT
+
 
 class LR1ParserTableBuilder:
     def __init__(self, terminals, non_terminals, rules, axiom, first):
@@ -12,7 +14,7 @@ class LR1ParserTableBuilder:
         self.states = []
         self.goto_table = {}
         self.action_table = {}
-        self.first['$'] = {'$'}
+        self.first[END] = {END}
 
     def _index_rules(self):
         index = defaultdict(list)
@@ -26,14 +28,14 @@ class LR1ParserTableBuilder:
     def first_of_sequence(self, sequence):
         result = set()
         if not sequence:
-            result.add('eps')
+            result.add(EPS)
             return result
         for symbol in sequence:
-            result |= (self.first.get(symbol, set()) - {'eps'})
-            if 'eps' not in self.first.get(symbol, set()):
+            result |= (self.first.get(symbol, set()) - {EPS})
+            if EPS not in self.first.get(symbol, set()):
                 break
         else:
-            result.add('eps')
+            result.add(EPS)
         return result
 
     def closure(self, items):
@@ -49,7 +51,7 @@ class LR1ParserTableBuilder:
                     lookaheads = self.first_of_sequence(after_dot)
                     final_lookaheads = set()
                     for la in lookaheads:
-                        if la == 'eps':
+                        if la == EPS:
                             final_lookaheads.add(lookahead)
                         else:
                             final_lookaheads.add(la)
@@ -69,7 +71,7 @@ class LR1ParserTableBuilder:
         return self.closure(moved) if moved else frozenset()
 
     def count_states(self):
-        start_rule = ('Z', (self.axiom,), 0, '$')
+        start_rule = (Z, (self.axiom,), 0, END)
         initial = self.closure([start_rule])
         self.states.append(initial)
         queue = deque([initial])
@@ -93,18 +95,18 @@ class LR1ParserTableBuilder:
                 out = item[1]
                 lookahead = item[3]
 
-                if (dot_ind < len(out)) and (out != ('eps',)):
+                if (dot_ind < len(out)) and (out != (EPS,)):
                     symbol = out[dot_ind]
                     next_state = self.goto(state, symbol)
                     next_state_ind = self.states.index(next_state)
 
                     if symbol in self.terminals:
-                        self.action_table[state_ind][symbol] = ['shift', next_state_ind]
+                        self.action_table[state_ind][symbol] = [SHIFT, next_state_ind]
                     else:
                         self.goto_table[state_ind][symbol] = next_state_ind
                 else:
                     if nt != 'Z':
-                        self.action_table[state_ind][lookahead] = ['reduce', nt, out]
+                        self.action_table[state_ind][lookahead] = [REDUCE, nt, out]
                     else:
-                        self.action_table[state_ind][lookahead] = ['accept', nt, out]
+                        self.action_table[state_ind][lookahead] = [ACCEPT, nt, out]
         return self.action_table, self.goto_table

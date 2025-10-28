@@ -1,3 +1,6 @@
+from src.constants import EPS
+
+
 class FirstFinder:
     def __init__(self, nts, ts, rules, axioms):
         self.nts = nts
@@ -13,8 +16,8 @@ class FirstFinder:
         for nt in self.nts:
             first[nt] = set()
 
-        first['eps'] = set()
-        first['eps'].add('eps')
+        first[EPS] = set()
+        first[EPS].add(EPS)
 
         changed = True
         while changed:
@@ -27,12 +30,12 @@ class FirstFinder:
                     while (i < len(c)) and add_eps:
                         first[rule.nt].update(first[c[i]])
 
-                        if 'eps' not in first[c[i]]:
+                        if EPS not in first[c[i]]:
                             add_eps = False
                         i += 1
 
                     if add_eps:
-                        first[rule.nt].add('eps')
+                        first[rule.nt].add(EPS)
 
                     if len(first[rule.nt]) != old_len:
                         changed = True

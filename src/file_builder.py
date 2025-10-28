@@ -1,3 +1,6 @@
+from src import *
+
+
 def remove_outer_quotes(s):
     if s.startswith("'") and s.endswith("'"):
         return s[1:-1]
@@ -15,25 +18,25 @@ def generate_lr1_class(action_data, goto_data, file_path):
             for symbol, act in actions.items():
                 symbol = remove_outer_quotes(symbol)
                 action_type = act[0]
-                if action_type == 'shift':
+                if action_type == SHIFT:
                     shifts.append((act[1], symbol))
-                elif action_type == 'reduce':
-                    if act[2] != ('eps',):
+                elif action_type == REDUCE:
+                    if act[2] != (EPS,):
                         out = [remove_outer_quotes(x) for x in act[2]]
                     else:
-                        out = "'ε'"
+                        out = f"'{EPS_LETTER}'"
                     reduces.append((act[1], symbol, out))
 
-                elif action_type == 'accept':
-                    file.write(f"            ({state_ind}, '{symbol}'): 'f',\n")
+                elif action_type == ACCEPT:
+                    file.write(f"            ({state_ind}, '{symbol}'): '{ACCEPT[0]}',\n")
 
             shifts.sort(key=lambda x: x[1])
             for next_state, symbol in shifts:
-                file.write(f"            ({state_ind}, '{symbol}'): 's{next_state}',\n")
+                file.write(f"            ({state_ind}, '{symbol}'): '{SHIFT[0]}{next_state}',\n")
 
             reduces.sort(key=lambda x: x[1])
             for next_state, symbol, out in reduces:
-                file.write(f"            ({state_ind}, '{symbol}'): ['r', '{next_state}', {out}],\n")
+                file.write(f"            ({state_ind}, '{symbol}'): ['{REDUCE[0]}', '{next_state}', {out}],\n")
 
         file.write("        }\n\n")
 
