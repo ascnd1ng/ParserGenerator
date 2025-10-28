@@ -1,5 +1,5 @@
 from collections import deque
-from src import Node, EPS_LETTER, ACCEPT, REDUCE, SHIFT
+from src import Node, EPS_LETTER, ACCEPT, REDUCE, SHIFT, PARSER_START_NODE
 
 
 def is_accept(action):
@@ -46,10 +46,12 @@ class LR1Parser:
             self.goto = lr1table.goto
             root, token_ind = self.parse(token_ind)
             roots.append(root)
-        root = Node('Program')
-        for c in roots:
-            root.add_child(c)
-        return root
+        if len(roots) > 1:
+            root = Node(PARSER_START_NODE)
+            for c in roots:
+                root.add_child(c)
+            return root
+        return roots[0]
 
     def parse(self, token_ind):
         self.magazine.append(0)

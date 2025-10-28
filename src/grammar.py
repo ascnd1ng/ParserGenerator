@@ -47,11 +47,7 @@ class Grammar:
         return rule
 
     def extract(self, root):
-        if (len(root) == 0) or ((len(root) == 1) and (root.value != root[0].value)):
-            return
-
-        if root.value == root[0].value:
-            self.extract(root[0])
+        if len(root) < 2:
             return
 
         if root[1].value == '->':
