@@ -41,12 +41,15 @@ def generate_lr1_class(action_data, goto_data, file_path):
             for next_state, symbol, out in reduces:
                 file.write(f"            ({state_ind}, {symbol}): ['r', '{next_state}', {out}],\n")
 
-
         file.write("        }\n\n")
 
         file.write("        self.goto = {\n")
         for state_ind, gotos in goto_data.items():
-            for symbol, target in gotos.items():
+            adapted_gotos = []
+            for symbol, next_state in gotos.items():
                 symbol = f"'{symbol}'"
-                file.write(f"            ({state_ind}, {symbol}): {target},\n")
+                adapted_gotos.append((symbol, next_state))
+            adapted_gotos.sort(key=lambda x: x[0])
+            for symbol, next_state in adapted_gotos:
+                file.write(f"            ({state_ind}, {symbol}): {next_state},\n")
         file.write("        }\n")
