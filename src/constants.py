@@ -18,12 +18,6 @@ RuleResult = 'RuleResult'
 RuleResultTail = 'RuleResultTail'
 Chain = 'Chain'
 
-reverse_dict = {"'terminal'": "'KW_T'",
-                "'non-terminal'": "'KW_NT'",
-                "'axiom'": "'KW_AXIOM'",
-                "'kwepsilon'": "'KW_EPSILON'",
-                "'$'": "'END'"
-                }
 reverse_dict_lr1 = {
     "'terminal'": "'KW_T'",
     "'non-terminal'": "'KW_NT'",
@@ -31,7 +25,8 @@ reverse_dict_lr1 = {
     'kwepsilon': "'KW_EPSILON'",
     '$': "'END'",
     'ident': "'ident'",
-    'term': "'term'"
+    'term': "'term'",
+    'n': "'n'"
 }
 
 patterns_meta = [

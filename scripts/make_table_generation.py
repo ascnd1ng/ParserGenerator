@@ -40,11 +40,10 @@ def lr1_make_table_generation(pt, i_p, g_p, t_p, patterns, axiom):
 
     # nt_rules = [rules[1], rules[2]]
     # print(*nt_rules, sep="\n")
-    t_b = LR1ParserTableBuilder(ts, nts, rules, 'Program', first)
+    t_b = LR1ParserTableBuilder(ts, nts, rules, axioms[0], first)
 
     states = t_b.count_states()
     pprint(states)
-
 
     a_t, g_t = t_b.build_tables()
     print(a_t)

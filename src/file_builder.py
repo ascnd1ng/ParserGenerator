@@ -1,4 +1,4 @@
-from .constants import reverse_dict, reverse_dict_lr1
+from .constants import reverse_dict_lr1
 from pprint import pprint, pformat
 import autopep8
 
