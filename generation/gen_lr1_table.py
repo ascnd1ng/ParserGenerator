@@ -3,7 +3,7 @@ class LR1:
         self.action = {
             (0, 'non-terminal'): 's1',
             (1, 'ident'): 's4',
-            (2, '$'): 'f',
+            (2, '$'): 'a',
             (3, 'terminal'): 's5',
             (4, ','): 's7',
             (4, ';'): ['r', 'NT_Add', 'ε'],
