@@ -1,6 +1,3 @@
-from .constants import reverse_dict_lr1
-from pprint import pprint, pformat
-import autopep8
 
 
 def remove_outer_quotes(s):
@@ -18,8 +15,7 @@ def generate_lr1_class(action_data, goto_data, file_path):
             shifts = []
             reduces = []
             for symbol, act in actions.items():
-                if symbol in reverse_dict_lr1:
-                    symbol = reverse_dict_lr1[symbol]
+                symbol = remove_outer_quotes(symbol)
                 action_type = act[0]
                 if action_type == 'shift':
                     shifts.append((act[1], symbol))
@@ -31,15 +27,15 @@ def generate_lr1_class(action_data, goto_data, file_path):
                     reduces.append((act[1], symbol, out))
 
                 elif action_type == 'accept':
-                    file.write(f"            ({state_ind}, {symbol}): 'f',\n")
+                    file.write(f"            ({state_ind}, '{symbol}'): 'f',\n")
 
             shifts.sort(key=lambda x: x[1])
             for next_state, symbol in shifts:
-                file.write(f"            ({state_ind}, {symbol}): 's{next_state}',\n")
+                file.write(f"            ({state_ind}, '{symbol}'): 's{next_state}',\n")
 
             reduces.sort(key=lambda x: x[1])
             for next_state, symbol, out in reduces:
-                file.write(f"            ({state_ind}, {symbol}): ['r', '{next_state}', {out}],\n")
+                file.write(f"            ({state_ind}, '{symbol}'): ['r', '{next_state}', {out}],\n")
 
         file.write("        }\n\n")
 
