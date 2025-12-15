@@ -1,3 +1,4 @@
+#структура
 Program -> NT_Decl T_Decl RuleList A_Decl;
 
 # объявления
@@ -7,7 +8,6 @@ NT_Add -> ',' IDENT NT_Add | eps
 T_Decl -> KW_T TERMINAL T_Add ';'
 T_Add -> ',' TERMINAL  T_Add | eps
 
-A_Decl -> KW_AXIOM IDENT ';'
 
 # правила грамматики
 RuleList -> Rule RuleList
@@ -19,14 +19,5 @@ Chain -> KW_EPSILON
 Chain -> |
 Chain -> eps
 
-
-(r'non-terminal', 'KW_NT'),
-(r'terminal', 'KW_T'),
-(r'epsilon', 'KW_EPSILON'),
-(r'axiom', 'KW_AXIOM'),
-(r'[A-Z0-9]+', 'IDENT'),
-(r"'[^']*'|[a-z]+", 'TERMINAL'),
-(r'\|', '|'),
-(r'->', '->'),
-(r',', ','),
-(r';', ';')
+#аксиома
+A_Decl -> KW_AXIOM IDENT ';'
