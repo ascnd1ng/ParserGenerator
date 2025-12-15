@@ -1,20 +1,17 @@
 from collections import deque
-
-from src import lexer
-from src.lr1table import *
-from src import Node
+from src import Node, EPS_LETTER, ACCEPT, REDUCE, SHIFT, PARSER_START_NODE
 
 
-def is_finish(action):
-    return action[0] == 'f'
+def is_accept(action):
+    return action[0] == ACCEPT[0]
 
 
 def is_reduce(action):
-    return action[0][0] == 'r'
+    return action[0][0] == REDUCE[0]
 
 
 def is_shift(action):
-    return action[0] == 's'
+    return action[0] == SHIFT[0]
 
 
 def extract_state_name(shift):  #s12
@@ -22,7 +19,7 @@ def extract_state_name(shift):  #s12
 
 
 def extract_out_len(reduce):  #[r2, X, u]
-    if reduce[-1] == 'ε':
+    if reduce[-1] == EPS_LETTER:
         return 0
     out_len = len(reduce[-1])
     return int(out_len)
@@ -49,10 +46,12 @@ class LR1Parser:
             self.goto = lr1table.goto
             root, token_ind = self.parse(token_ind)
             roots.append(root)
-        root = Node('Program')
-        for c in roots:
-            root.add_child(c)
-        return root
+        if len(roots) > 1:
+            root = Node(PARSER_START_NODE)
+            for c in roots:
+                root.add_child(c)
+            return root
+        return roots[0]
 
     def parse(self, token_ind):
         self.magazine.append(0)
@@ -88,20 +87,8 @@ class LR1Parser:
                     new_node.add_child(c)
                 self.tree_stack.append(new_node)
 
-            elif is_finish(cur_action):
+            elif is_accept(cur_action):
                 root = self.tree_stack.pop()
                 return root, token_ind
             else:
                 raise ValueError(f"LR(1) parse ERROR")
-
-# i_p = '../grammar_descriptions/metagrammar.txt'
-# with open(i_p, 'r') as f:
-#     text = f.read()
-# tokens = lexer(text, patterns_meta)
-# LR1Parser = LR1Parser(tokens, [LR1Nt(), LR1T(), LR1Rules(), LR1Axiom()])
-# root = LR1Parser.parse_all()
-#
-# with open('graph.dot', 'w') as f:
-#     f.write('digraph {\n')
-#     root.print_graph(f)
-#     f.write('}')

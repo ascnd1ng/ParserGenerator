@@ -1,10 +1,10 @@
-KW_T = 'KW_T'
-KW_NT = 'KW_NT'
-KW_AXIOM = 'KW_AXIOM'
-KW_EPSILON = 'KW_EPSILON'
+KW_T = 'terminal'
+KW_NT = 'non-terminal'
+KW_AXIOM = 'axiom'
+KW_EPSILON = 'epsilon'
 TERMINAL = 'term'
 IDENT = 'ident'
-END = 'END'
+END = '$'
 
 Program = 'Program'
 Rule = 'Rule'
@@ -17,13 +17,6 @@ T_Add = 'T_Add'
 RuleResult = 'RuleResult'
 RuleResultTail = 'RuleResultTail'
 Chain = 'Chain'
-
-reverse_dict = {"'terminal'": "'KW_T'",
-                "'non-terminal'": "'KW_NT'",
-                "'axiom'": "'KW_AXIOM'",
-                "'kwepsilon'": "'KW_EPSILON'",
-                "'$'": "'END'"
-                }
 
 patterns_meta = [
     (r'non-terminal', KW_NT),
@@ -45,3 +38,11 @@ patterns_calc = [
     (r'\(', '('),
     (r'\)', ')')
 ]
+
+SHIFT = 'shift'
+REDUCE = 'reduce'
+ACCEPT = 'accept'
+EPS_LETTER = 'ε'
+EPS = 'eps'
+Z = 'Z'
+PARSER_START_NODE = 'Program'

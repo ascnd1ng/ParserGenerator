@@ -1,14 +1,12 @@
 from src.lr1table import LR1Axiom, LR1Rules, LR1T, LR1Nt
-from src.prediction_table import PredictionTable
 from make_table_generation import lr1_make_table_generation
 from src.constants import *
-pt = PredictionTable()
+pt = [LR1Nt(), LR1T(), LR1Rules(), LR1Axiom()]
 
 
 i_p = '../grammar_descriptions/metagrammar.txt'
-g_p = '../generation/graph_check_calc.dot'
+g_p = '../generation/build_table.dot'
 t_p = '../generation/gen_lr1_table.py'
 patterns = patterns_meta
-axiom = 'Program'
 
-lr1_make_table_generation([LR1Nt(), LR1T(), LR1Rules(), LR1Axiom()], i_p, g_p, t_p, patterns, axiom)
+lr1_make_table_generation([LR1Nt(), LR1T(), LR1Rules(), LR1Axiom()], i_p, g_p, t_p, patterns)

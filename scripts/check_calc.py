@@ -1,19 +1,15 @@
-import os
-import sys
-
-from generation.gen_pred_t_312 import GeneratedPredictionTable
+from generation.gen_calc_lr1_table import LR1
+from scripts.make_table_generation import lr1_make_table_generation
 from src.constants import *
-from make_table_generation import make_table_generation
 
 i_p = '../grammar_descriptions/arithmetic_expression.txt'
-g_p = '../generation/graph312expression.dot'
+g_p = '../generation/check_calc.dot'
 t_p = None
 
-pt = GeneratedPredictionTable()
+pt = [LR1()]
 patterns = patterns_calc
-axiom = 'E1'
 
-root = make_table_generation(pt, i_p, g_p, t_p, patterns, axiom)
+root = lr1_make_table_generation(pt, i_p, g_p, t_p, patterns)
 
 res = []
 

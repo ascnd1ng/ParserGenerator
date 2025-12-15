@@ -1,5 +1,5 @@
 import re
-from .constants import *
+from src.constants import END
 
 
 def lexer(text, patterns):
@@ -44,5 +44,5 @@ def lexer(text, patterns):
                 print(f"Syntax error ({line}, {column}): Unexpected character '{text[position]}'")
                 position += 1
                 column += 1
-    tokens.append(['END'])
+    tokens.append([END])
     return tokens

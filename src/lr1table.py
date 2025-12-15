@@ -5,7 +5,7 @@ class LR1Axiom:
     def __init__(self):
         self.action = {
             (0, KW_AXIOM): 's2',
-            (1, END): 'f',
+            (1, END): 'a',
             (2, IDENT): 's3',
             (3, ';'): 's4',
             (4, END): ['r1', A_Decl, [KW_AXIOM, IDENT, ';']]
@@ -19,7 +19,7 @@ class LR1Nt:
     def __init__(self):
         self.action = {
             (0, KW_NT): 's2',
-            (1, KW_T): 'f',
+            (1, KW_T): 'a',
             (2, IDENT): 's3',
             (3, ';'): ['r3', NT_Add, 'ε'],
             (3, ','): 's5',
@@ -41,7 +41,7 @@ class LR1T:
     def __init__(self):
         self.action = {
             (0, KW_T): 's2',
-            (1, IDENT): 'f',
+            (1, IDENT): 'a',
             (2, TERMINAL): 's3',
             (3, ';'): ['r3', T_Add, 'ε'],
             (3, ','): 's5',
@@ -65,7 +65,7 @@ class LR1Rules:
             (0, IDENT): 's3',
             (0, KW_AXIOM): ['r2', RuleList,  'ε'],
 
-            (1, KW_AXIOM): 'f',
+            (1, KW_AXIOM): 'a',
 
             (2, IDENT): 's3',
             (2, KW_AXIOM): ['r2', RuleList,  'ε'],

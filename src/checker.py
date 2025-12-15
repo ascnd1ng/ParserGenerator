@@ -15,9 +15,9 @@ class Checker:
         all_nts = set(self.nts)
         used_nts = set()
 
-        for r in self.rules:
-            rnt = r.nt
-            used_nts.add(rnt)
+        for rule in self.rules:
+            nt = rule.nt
+            used_nts.add(nt)
 
         diff = list(all_nts - used_nts)
         if len(diff) > 0:
@@ -29,12 +29,12 @@ class Checker:
         return True
 
     def check_undeclared_symbols(self):
-        for r in self.rules:
-            rnt = r.nt
-            if rnt not in self.nts:
-                print(f"Необъявленный нетерминал: {self.find_token(rnt)}")
-            rout = r.out
-            for c in rout:
+        for rule in self.rules:
+            nt = rule.nt
+            if nt not in self.nts:
+                print(f"Необъявленный нетерминал: {self.find_token(nt)}")
+            out = rule.out
+            for c in out:
                 for s in c:
                     if not self.is_declared(s):
                         print(f"Необъявленный символ: {self.find_token(s)}")
